@@ -3,10 +3,10 @@
     <div class="about">
       <i @click="showAbout" class="close"></i>
       <div class="about-content">
-        <h1>关于</h1>
-        <h2>Vue.js打造一个开源的CNode社区</h2>
-        <p class="skill"><b>技术栈</b>：</p>
-        <div>Vue2<br>Vuex(不同组件状态共享)<br>vue-router(路由)<br>axios(发起http请求)<br>SASS(SCSS)<br>Express(上线版本是Koa2)<br>Webpack<br>Moment.js(时间处理)<br>ES6<br>localStorage(HTML5)<br>Canvas(页面顶部小雪花)<br>CSS3</div>
+        <h1>About</h1>
+        <h2>Vue.js and SpringMVC + ssh framework</h2>
+        <p class="skill"><b>technology stack</b>：</p>
+        <div>Vue2<br>Vue<br>vue-router<br>axios(get&post)<br>SASS(SCSS)<br>Webpack<br>Moment.js(time processor)<br>ES6<br>localStorage(HTML5)<br>Canvas(Special Effect on the top)<br>CSS3</div>
 
       </div>
       <div @click="showAbout" class="mask"></div>
@@ -111,21 +111,12 @@ export default {
         }
 
       }
-      p.copyright {
-        text-indent: 0;
-      }
+
       div {
         // letter-spacing: 1px;
         padding-left: 50px;
       }
-      .help {
-        padding: 0;
-        width: 100%;
-        img {
-          width: 100%;
-          height: auto;
-        }
-      }
+
     }
     @media screen and (min-width: 760px) {
       .about-content {

@@ -16,7 +16,7 @@ Vue.use(Element)
 Vue.use(Vuex);
 
 Vue.prototype.moment = moment;
-Vue.prototype.changeTime = time => moment(time).startOf('minute').fromNow().replace(/hours?/, '小时').replace('ago', '前').replace(/days?/, '天').replace(/minutes?/, '分钟').replace(/\ban?/, '1').replace(/months?/, '个月').replace(/\byears?/, '年').replace(/\s/g, '').replace('fewseconds','分钟');
+Vue.prototype.changeTime = time => moment(time).startOf('_minute').fromNow().replace(/hours?/, '_hours').replace('ago', ' _ago ').replace(/days?/, '_days ').replace(/minutes?/, '_minutes').replace(/months?/, ' _months ').replace(/\byears?/, ' _years').replace(/\s/g, '').replace('fewseconds','fewseconds');
 
 const store = new Vuex.Store({
   state: {

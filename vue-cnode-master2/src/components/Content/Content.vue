@@ -2,11 +2,11 @@
   <div class="content">
 
     <div class="tab">
-      <div @click="changeTab('all')" :class="{isBorder: tab==='all'}" class="all type"><router-link to="/">首页</router-link></div>
-      <div @click="changeTab('good')" :class="{isBorder: tab==='good'}" class="good type"><router-link to="/">精华</router-link></div>
-      <div @click="changeTab('share')" :class="{isBorder: tab==='share'}" class="share type"><router-link to="/">分享</router-link></div>
-      <div @click="changeTab('ask')" :class="{isBorder: tab==='ask'}" class="ask type"><router-link to="/">问答</router-link></div>
-      <div @click="changeTab('job')" :class="{isBorder: tab==='job'}" class="job type"><router-link to="/">招聘</router-link></div>
+      <div @click="changeTab('all')" :class="{isBorder: tab==='all'}" class="all type"><router-link to="/">Home</router-link></div>
+      <div @click="changeTab('good')" :class="{isBorder: tab==='good'}" class="good type"><router-link to="/">Recommend</router-link></div>
+      <div @click="changeTab('share')" :class="{isBorder: tab==='share'}" class="share type"><router-link to="/">Share</router-link></div>
+      <div @click="changeTab('ask')" :class="{isBorder: tab==='ask'}" class="ask type"><router-link to="/">FAQ</router-link></div>
+      <div @click="changeTab('job')" :class="{isBorder: tab==='job'}" class="job type"><router-link to="/">Employment</router-link></div>
     </div>
 
     <div ref="article" @scroll="scroll($event)" class="article">
@@ -116,11 +116,11 @@ export default {
       align-items: center;
       text-align: center;
       color: white;
-      background-color: #2196F3;
+      background-color: royalblue;
       font-size: 110%;
       letter-spacing: 2px;
       a {
-        color: white;
+        color:#ffffff;
       }
       a::after {
         bottom: -1px;

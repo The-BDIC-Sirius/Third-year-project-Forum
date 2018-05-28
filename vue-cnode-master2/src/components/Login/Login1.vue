@@ -6,22 +6,27 @@
     </div>
 
     <div class="login-wrap" v-show="showloginview">
-      <h3>登录</h3>
+      <h2>Login</h2>
+      <br/>
+      <br/>
       <p v-show="showTishi">{{tishi}}</p>
       <input v-model="username" type="text" placeholder="账号">
       <input v-model="password" type="password" placeholder="密码">
-      <button @click.stop.prevent="login">登录</button>
-      <span v-on:click="ToRegister">没有账号？马上注册</span>
+      <button @click.stop.prevent="login">Login</button>
+      <span v-on:click="ToRegister">no account? click to resiger</span>
     </div>
     <div class="register-wrap" v-show="showRegister">
-      <h3>注册</h3>
+      <h2>Resiger</h2>
+      <br/>
+      <br/>
       <p v-show="showTishi">{{tishi}}</p>
       <input type="text" placeholder="nickname" v-model="newUsername">
       <input type="text" placeholder="firstname" v-model="firstname">
       <input type="text" placeholder="lastname" v-model="lastname">
-      <input type="password" placeholder="密码" v-model="newPassword">
-      <button v-on:click="register">注册</button>
-      <span v-on:click="ToLogin">已有账号？马上登录</span>
+      <input type="password" placeholder="password" v-model="newPassword">
+      <button v-on:click="register">resiger</button>
+      <br>
+      <span v-on:click="ToLogin">already have an account? click to login</span>
     </div>
 
   </div>
@@ -174,8 +179,15 @@
       }
     }
 
-    .login-wrap{text-align:center;}
-    .register-wrap{text-align:center;}
+    .login-wrap{
+      text-align:center;
+    padding-top: 40px;
+
+
+      }
+
+    .register-wrap{text-align:center;
+      padding-top: 40px;}
     input{display:block; width:250px; height:40px; line-height:40px; margin:0 auto; margin-bottom: 10px; outline:none; border:1px solid #888; padding:10px; box-sizing:border-box;}
     p{color:red;}
     button{display:block; width:250px; height:40px; line-height: 40px; margin:0 auto; border:none; background-color:#41b883; color:#fff; font-size:16px; margin-bottom:5px;}
@@ -190,5 +202,6 @@
         // list-style: none;
       }
     }
+
   }
 </style>

@@ -1,5 +1,14 @@
 <template lang="html">
+
   <div class="article-list">
+    <!--<div class="block">-->
+      <!--<span class="demonstration"></span>-->
+      <!--<el-carousel height="150px">-->
+        <!--<el-carousel-item v-for="item in 4" :key="item">-->
+          <!--<h3>{{ item }}</h3>-->
+        <!--</el-carousel-item>-->
+      <!--</el-carousel>-->
+    <!--</div>-->
 
     <transition-group name="slide-top">
       <div v-for="(item, index) of articleList" :key="item.last_reply_at+index" class="item">
@@ -8,7 +17,7 @@
         </div>
         <div class="title">
           <p>
-            <span class="flag" :class="{special: item.top || item.good}">{{(item.top ? '置顶' : '') || (item.good ? '精华': '') || types[item.tab]}}</span>
+            <span class="flag" :class="{special: item.top || item.good}">{{(item.top ? 'Top' : '') || (item.good ? 'Good': '') || types[item.tab]}}</span>
             <router-link :to="{name: 'article', params: {id: item.id}}">{{item.title}}</router-link>
           </p>
           <p class="view">
@@ -36,9 +45,9 @@ export default {
   data() {
     return {
       types: {
-        ask: '问答',
-        job: '招聘',
-        share: '分享'
+        ask: 'FAQ',
+        job: 'Job',
+        share: 'Share'
       }
     }
   },
@@ -70,26 +79,28 @@ export default {
 <style lang="scss" scoped>
 
   .article-list {
+    background-color: ghostwhite;
     position: relative;
     z-index: 1;
 
     .item {
-      width: 100%;
-      height: 70px;
+      width: 150%;
+      height: 120px;
       display: flex;
       // padding-top: 5px;
       // padding-left: 5px;
-      padding-right: 5px;
+      padding-right: 4px;
       border-bottom: 1px solid rgba(0, 0, 0, .1);
       .avatar {
-        width: 52px;
+        width: 75px;
         display: flex;
         justify-content: center;
         align-items: center;
 
         img {
-          width: 45px;
-          height: 45px;
+
+          width: 80px;
+          height: 80px;
           border-radius: 5px;
         }
       }
@@ -97,10 +108,10 @@ export default {
       .title {
         width: 100%;
 
-        flex: 4;
+        flex:4;
         background-color: white;
         padding-top: 15px;
-        padding-left: 5px;
+        padding-left: 8px;
         font-size: 13px;
         overflow: hidden;
         p {
@@ -119,7 +130,7 @@ export default {
         }
         .special {
           background-color: #80bd01;
-          color: white;
+          color: aliceblue;//white;
         }
         .view {
           position: relative;
@@ -173,6 +184,21 @@ export default {
         animation: loading .4s linear infinite;
       }
     }
+  }
+  .el-carousel__item h3 {
+    color: #475669;
+    font-size: 14px;
+    opacity: 0.75;
+    line-height: 150px;
+    margin: 0;
+  }
+
+  .el-carousel__item:nth-child(2n) {
+    background-color: #99a9bf;
+  }
+
+  .el-carousel__item:nth-child(2n+1) {
+    background-color: #d3dce6;
   }
 
 </style>

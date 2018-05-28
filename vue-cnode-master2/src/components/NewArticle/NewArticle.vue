@@ -1,31 +1,45 @@
-<template lang="html">
+<template>
   <div class="new-article">
 
     <div class="new-header">
       <i @click="showNewArticle" class="icon-back"></i>
-      New Topic
+      Create a Topic
     </div>
 
     <div class="new-content">
       <div class="new-type">
-        请选择主题类别:
+        Please Choose a Type:
         <select v-model.trim="type">
           <option>Share</option>
-          <option>Ask</option>
+          <option>FAQ</option>
           <option>Job</option>
         </select>
       </div>
 
       <div class="new-title">
-        <input v-model.trim="title" type="text" placeholder=" please enter title (not less than 10words)">
+        <input v-model.trim="title" type="text" placeholder=" Please enter title,at least 10 words">
+      </div>
+      <br>
+      <el-upload
+        class="upload-demo"
+        drag
+        action="https://jsonplaceholder.typicode.com/posts/"
+        multiple>
+        <i class="el-icon-upload"></i>
+        <div class="el-upload__text">drag here or <em>click</em></div>
+
+      </el-upload>
+      <br/>
+      <br/>
+      <br/>
+      <div class="new-body">
+        <textarea v-model="content" placeholder="Please enter the content"></textarea>
       </div>
 
-      <div class="new-body">
-        <textarea v-model="content" placeholder="Please enter content"></textarea>
-      </div>
+      <br>
 
       <div class="send">
-        <button @click="send">Publish</button>
+        <button @click="send">Release</button>
       </div>
 
     </div>
@@ -38,19 +52,13 @@ export default {
   name: 'newArticle',
   data() {
     return {
-      type: '分享',
+      type: 'Share',
       title: '',
-      content: '',
-      userID:''
-
+      content: ''
     }
   },
-  created() {
-
-    this.userID= this.userIDinit;
-  },
   computed: {
-    userIDinit() {
+    ak() {
       return this.$store.state.ak;
     }
   },
@@ -59,40 +67,34 @@ export default {
       this.$store.commit('showNewArticle', false)
     },
     send() {
-      if (!this.userID) {
+      if (!this.ak) {
         this.$store.commit('showLogin', true);
         return;
       }
-      if (this.type === '分享') {
+      if (this.type === 'Share') {
         this.type = 'share'
-      } else if (this.type === '问答') {
+      } else if (this.type === 'Interlocution') {
         this.type = 'ask';
       } else {
         this.type = 'job';
       }
-      var myDate = new Date();
-      let bloginfo =
-      {
-        title: this.title,
-        content: this.content,
-        user_id: this.userID,
-      }
-      alert(JSON.stringify(bloginfo));
 
-      this.axios.post('http://localhost:8085/test/newtopic', bloginfo)
+      this.axios.post('https://cnodejs.org/api/v1/topics', {
+        accesstoken: this.ak,
+        title: this.title,
+        tab: this.type,
+        content: this.content
+      })
         .then(result => {
           if (result.data && result.data.success) {
-            alert(JSON.stringify(result.data))
             this.$store.commit('showNewArticle', false);
             this.$store.commit('showAsideMenu', false);
-            // this.$router.push({name: 'article', params: {id: result.data.topic_id}});
+            this.$router.push({name: 'article', params: {id: result.data.topic_id}});
           } else {
-            alert('没有发布成功')
+            alert('You can not release successfully')
           }
         })
-        .catch(
-
-          (err) => {console.log('err', err);})
+        .catch((err) => {console.log('err', err);})
     }
   }
 }
@@ -120,7 +122,7 @@ export default {
       height: 50px;
       color: white;
       font-size: 1.4rem;
-      background-color: #2196f3;
+      background-color:  #2196f3;
       i.icon-back {
         position: absolute;
         left: 10px;
@@ -178,6 +180,18 @@ export default {
           }
         }
       }
+      .upload-demo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @media only screen and (min-width: 50px) and (max-width: 640px) {
+        input{
+          width: 50% !important;
+          height: 50%;
+        }
+      }
+
+      }
 
       .new-body {
         display: flex;
@@ -201,13 +215,14 @@ export default {
         }
       }
 
+
       .send {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
         button {
-          width: 70px;
+          width: 83px;
           height: 32px;
           font-size: 1.2rem;
           // text-align: center;

@@ -1,7 +1,6 @@
-<template lang="html">
-  <div class="user">
+  <template>
+   <div class="user">
       <div class="info">
-
         <transition name="slide-fade">
           <div v-show="isShowContent" class="info-content">
             <div class="info-register">
@@ -12,24 +11,21 @@
                 {{ user.loginname }}
               </div>
               <div class="info-score">
-                积分：{{ user.score }}
-              </div>
-
-              <div class="info-score">
-                GitHub： <a :href="'https://github.com/'+user.githubUsername" target="_blank">{{ user.githubUsername || 'microzz' }}</a>
+                Points：{{ user.score }}
               </div>
 
               <div class="info-date">
-                注册于：{{ changeTime(user.create_at) }}
+                Registed in：{{ changeTime(user.create_at) }}
               </div>
             </div>
 
+
             <div class="info-collect">
               <div class="collect-title">
-                收藏的话题
+                Topics that being created recently
               </div>
               <div class="collect-content">
-                <div v-for="item of collectTopics" class="collect-item">
+                <div v-for="item of user.recent_topics" class="collect-item">
                   <div class="img">
                     <img :src="item.author.avatar_url" alt="">
                   </div>
@@ -45,7 +41,7 @@
 
             <div class="info-collect">
               <div class="collect-title">
-                最近参与的话题
+                Topics that involved in recently
               </div>
               <div class="collect-content">
                 <div v-for="item of user.recent_replies" class="collect-item">
@@ -64,16 +60,16 @@
 
             <div class="info-collect">
               <div class="collect-title">
-                最近创建的话题
+                Collections
               </div>
               <div class="collect-content">
-                <div v-for="item of user.recent_topics" class="collect-item">
+                <div v-for="item of collectTopics" class="collect-item">
                   <div class="img">
                     <img :src="item.author.avatar_url" alt="">
                   </div>
                   <div class="title">
                     <span @click="view">
-                    <router-link :to="{name: 'article', params: {id: item.id}}">{{item.title}}</router-link>
+                    <router-link :to="{name: 'articlelist', params: {id: item.id}}">{{item.title}}</router-link>
                     </span>
 
                   </div>
@@ -86,9 +82,7 @@
 
       </div>
 
-      <div class="back">
-        <i @click.stop.prevent="$router.go(-1)" class="icon-back"></i>
-      </div>
+
 
   </div>
 </template>
@@ -132,6 +126,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
   .user {
     .slide-fade-enter-active {
       transition: all .3s ease;
@@ -143,7 +138,9 @@ export default {
       transform: translateX(160px);
       opacity: 0;
     }
+
       .info {
+
         position: absolute;
         display: flex;
         flex-direction: column;
@@ -155,7 +152,7 @@ export default {
         right: 0;
         width: 100%;
         height: 100%;
-        background-color: white;
+        background-color: skyblue;
         .info-header {
           width: 100%;
           height: 50px;
@@ -178,6 +175,7 @@ export default {
 
         .info-content {
           width: 100%;
+
           height: 100%;
           flex: 1;
           overflow: auto;
@@ -197,29 +195,30 @@ export default {
             }
 
             .info-name {
-              font-size: 1.5rem;
+              font-size: 2.5rem;
               font-weight: bold;
             }
           }
 
           .info-collect {
-            width: 93%;
+            background-color: white;
+            width: 100%;
             margin: auto;
-            padding-top: 10px;
-            padding-bottom: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
             display: flex;
             justify-content: center;
             flex-direction: column;
-            border: 1px solid rgba(0, 0, 0, .2);
-            border-radius: 4px;
+            border: 5px solid rgba(0, 0, 0, .4);
+            border-radius: 20px;
             .collect-title {
               width: 100%;
               padding-bottom: 10px;
-              border-bottom: 1px solid rgba(0, 0, 0, .1);
+              border-bottom: 3px solid rgba(0, 0, 0, .3);
             }
             .collect-item {
               display: flex;
-              padding: 5px 5px 0 5px;
+              padding: 4px 4px 0 4px;
               align-items: center;
 
               img {
@@ -231,7 +230,7 @@ export default {
               }
             }
             .collect-item + .collect-item {
-              border-top: 1px solid rgba(0, 0, 0, .07);
+              border-top: 2.5px solid rgba(0, 0, 0, .17);
             }
           }
 
@@ -253,23 +252,25 @@ export default {
           }
         }
       }
-      .back {
-        position: fixed;
-        z-index: 1;
-        top: 60%;
-        left: -8px;
-        width: 50px;
-        height: 50px;
+    .back {
+      position: fixed;
+      z-index: 1;
+      top: 60%;
+      left: -8px;
+      width: 50px;
+      height: 50px;
 
-        i.icon-back {
-          display: inline-block;
-          width: 100%;
-          height: 100%;
-          background: url('../../common/icons/icon-back-blue.svg') no-repeat;
-          background-size: contain;
-          opacity: .5;
-          cursor: pointer;
-        }
+      i.icon-back {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        background: url('../../common/icons/icon-back-blue.svg') no-repeat;
+        background-size: contain;
+        opacity: .5;
+        cursor: pointer;
       }
+    }
   }
 </style>
+
+

@@ -3,7 +3,7 @@
 
   <div class="info">
     <div class="info-header">
-      <i @click="showInfo" class="icon-back"></i>个人中心
+      <i @click="showInfo" class="icon-back"></i>Home page
     </div>
 
     <transition name="slide-fade">
@@ -16,7 +16,7 @@
             {{ userInfo.loginname }}
           </div>
           <div class="info-score">
-            积分：{{ user.score }}
+            Store：{{ user.score }}
           </div>
 
           <div class="info-score">
@@ -24,13 +24,13 @@
           </div>
 
           <div class="info-date">
-            注册于：{{ changeTime(user.create_at) }}
+            Register on：{{ changeTime(user.create_at) }}
           </div>
         </div>
 
         <div class="info-collect">
           <div class="collect-title">
-            收藏的话题
+            Topics you liked
           </div>
           <div class="collect-content">
             <div v-for="item of collectTopics" class="collect-item">
@@ -46,10 +46,10 @@
             </div>
           </div>
         </div>
-
+          Topics you involved
         <div class="info-collect">
           <div class="collect-title">
-            最近参与的话题
+
           </div>
           <div class="collect-content">
             <div v-for="item of user.recent_replies" class="collect-item">
@@ -68,7 +68,7 @@
 
         <div class="info-collect">
           <div class="collect-title">
-            最近创建的话题
+            Topics you recently created
           </div>
           <div class="collect-content">
             <div v-for="item of user.recent_topics" class="collect-item">

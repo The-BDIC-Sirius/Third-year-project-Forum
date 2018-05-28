@@ -9,7 +9,7 @@
             <!-- <img @click="showLogin" :src="userInfo.avatar_url || 'https://icdn.microzz.com/20170417_vue_cnode/icon-unlogin.svg'" alt=""> -->
           </div>
           <div class="username">
-            {{userInfo.success ? userInfo.loginname : '点击头像登录'}}
+            {{userInfo.success ? userInfo.loginname : 'Click to login'}}
           </div>
         </div>
 
@@ -46,39 +46,39 @@
 </template>
 
 <script>
-export default {
-  name: 'asideMenu',
-  computed: {
-    isShowAsideMenu() {
-      return this.$store.state.isShowAsideMenu;
+  export default {
+    name: 'asideMenu',
+    computed: {
+      isShowAsideMenu() {
+        return this.$store.state.isShowAsideMenu;
+      },
+      userInfo() {
+        return this.$store.state.userInfo;
+      }
     },
-    userInfo() {
-      return this.$store.state.userInfo;
-    }
-  },
-  methods: {
-    showAsideMenu() {
-      this.$store.commit('showAsideMenu', false);
-    },
-    showLogin() {
-      this.$store.commit('showLogin', true);
-    },
-    showInfo() {
-      this.$store.commit('showInfo', true);
-      this.$router.push('/')
-    },
-    showMsg() {
-      this.$store.commit('showMsg', true);
-      this.$router.push('/')
-    },
-    showNewArticle() {
-      this.$store.commit('showNewArticle', true);
-    },
-    showAbout() {
-      this.$store.commit('showAbout', true);
+    methods: {
+      showAsideMenu() {
+        this.$store.commit('showAsideMenu', false);
+      },
+      showLogin() {
+        this.$store.commit('showLogin', true);
+      },
+      showInfo() {
+        this.$store.commit('showInfo', true);
+        this.$router.push('/')
+      },
+      showMsg() {
+        this.$store.commit('showMsg', true);
+        this.$router.push('/')
+      },
+      showNewArticle() {
+        this.$store.commit('showNewArticle', true);
+      },
+      showAbout() {
+        this.$store.commit('showAbout', true);
+      }
     }
   }
-}
 </script>
 
 <style lang="scss" scoped>

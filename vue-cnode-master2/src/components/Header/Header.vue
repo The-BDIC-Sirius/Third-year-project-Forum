@@ -76,7 +76,7 @@ export default {
     flex-direction: column;
     width: 100%;
     height: 70px;
-    background-color: #2196F3;
+    background-color: royalblue;
     color: white;
     justify-content: center;
     align-items: center;
@@ -124,7 +124,7 @@ export default {
     }
 
     h1 {
-      margin-right: 900px;
+      margin-right: 1100px;
       flex: 5;
       margin-top: 40px;
       letter-spacing: 2px;
